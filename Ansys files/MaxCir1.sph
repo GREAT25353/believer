@@ -1,0 +1,74 @@
+* 2;MaxCir1.ckt
+* Project: C:/Users/yakas/OneDrive/Desktop/Ansys files/Project2.aedt
+* Design: MaxCir1
+
+*BeginParamDef
+*EndParamDef
+
+
+*begin toplevel circuit
+.PARAM Kle=1
+LPhaseA net_4 net_1 1 Winding
+LPhaseB net_5 net_1 1 Winding
+LPhaseC net_6 net_1 1 Winding
+RA net_7 net_4 1.44235
+V112 net_21 0 PULSE (-1 1 75 0 0 60 180) TYPE=POS
+V105 net_20 0 PULSE (-1 1 45 0 0 60 180) TYPE=POS
+VIC net_36 net_12 DC 0 
+.PRINT TRAN PROBE VIC(t) I(VIC)
+LC net_12 net_9 '0.000597162*Kle' 
+VIA net_34 net_10 DC 0 
+.PRINT TRAN PROBE VIA(t) I(VIA)
+VIB net_35 net_11 DC 0 
+.PRINT TRAN PROBE VIB(t) I(VIB)
+LA net_10 net_7 '0.000597162*Kle' 
+LB net_11 net_8 '0.000597162*Kle' 
+RB net_8 net_5 1.44235
+RC net_9 net_6 1.44235
+V98 net_19 0 PULSE (-1 1 15 0 0 60 180) TYPE=POS
+V119 net_22 0 PULSE (-1 1 105 0 0 60 180) TYPE=POS
+V126 net_23 0 PULSE (-1 1 135 0 0 60 180) TYPE=POS
+R154 net_21 net_25 100
+R147 net_20 net_25 100
+V133 net_24 0 PULSE (-1 1 165 0 0 60 180) TYPE=POS
+R140 net_19 net_25 100
+R168 net_23 net_25 100
+R161 net_22 net_25 100
+IVc2 net_20 0 DC 0 
+.PRINT TRAN PROBE IVc2(t) V(IVc2)
+IVc1 net_19 0 DC 0 
+.PRINT TRAN PROBE IVc1(t) V(IVc1)
+IVc3 net_21 0 DC 0 
+.PRINT TRAN PROBE IVc3(t) V(IVc3)
+R175 net_24 net_25 100
+IVc6 net_24 0 DC 0 
+.PRINT TRAN PROBE IVc6(t) V(IVc6)
+IVc5 net_23 0 DC 0 
+.PRINT TRAN PROBE IVc5(t) V(IVc5)
+IVc4 net_22 0 DC 0 
+.PRINT TRAN PROBE IVc4(t) V(IVc4)
+S_343 net_43 net_33 IVc6 POS SModel1 OFF
+S_350 net_44 net_36 IVc5 POS SModel1 OFF
+S_357 net_45 net_33 IVc2 POS SModel1 OFF
+.MODEL DModel1 D (IS=1e-14 RS=0.413264 N=1 EG=1.11 XTI=3 BV=1e+30 IBV=0.001 TNOM=27)
+.MODEL SModel1 SW (Ron=0.001 Roff=1000000 Von=0 Voff=0)
+V231 0 net_33 110
+V224 net_31 0 110
+D238 net_33 net_34 DModel1 
+D245 net_34 net_31 DModel1 
+D252 net_33 net_35 DModel1 
+D259 net_35 net_31 DModel1 
+S_329 net_41 net_33 IVc4 POS SModel1 OFF
+S_336 net_42 net_35 IVc3 POS SModel1 OFF
+D287 net_34 net_41 DModel1 
+S_322 net_40 net_34 IVc1 POS SModel1 OFF
+D266 net_33 net_36 DModel1 
+D273 net_36 net_31 DModel1 
+D280 net_31 net_40 DModel1 
+D301 net_35 net_43 DModel1 
+D308 net_31 net_44 DModel1 
+D294 net_31 net_42 DModel1 
+D315 net_36 net_45 DModel1 
+
+*end toplevel circuit
+.end
